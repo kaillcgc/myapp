@@ -1,0 +1,120 @@
+.bodynr {
+    width: 1300px;
+    height: 965px;
+    margin: 0 auto;
+}
+
+.body-title {
+    width: 140px;
+    border-bottom: 6px solid;
+    border-image: linear-gradient(90deg, #cc1a1a 0%, #dc8b8b 50%, #f5f5f5 99%) 0 0 1 0
+}
+
+.sptjcon {
+    width: 1200px;
+    height: 400px;
+    margin: 0 auto;
+    margin-top: 15px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.sptj-xcp {
+    width: 400px;
+    height: 280px;
+    float: left;
+    margin-top: 110px;
+}
+
+.xcp {
+    width: 800px;
+    height: 400px;
+    float: right;
+}
+
+.body-title {
+    width: 140px;
+    border-bottom: 6px solid;
+    border-image: linear-gradient(90deg, #cc1a1a 0%, #dc8b8b 50%, #f5f5f5 99%) 0 0 1 0
+}
+
+.body-title2 {
+    width: 170px;
+    border-bottom: 6px solid;
+    border-image: linear-gradient(90deg, #cc1a1a 0%, #dc8b8b 50%, #f5f5f5 99%) 0 0 1 0
+}
+
+.fyldzhcon, .xctgcon {
+    margin-top: 15px;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 550px;
+    height: 300px;
+}
+
+.fyldzhul {
+    list-style: none;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.fyldzhul li:hover {
+    transform: scale(1.05);
+    background: rgb(245, 245, 245);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+    p {
+        color: #cc1a1a;
+    }
+
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out, background 0.25s ease-in-out;
+}
+
+.fyldzhul li a {
+    display: table-cell;
+    width: 300px;
+    text-decoration: none;
+
+    p {
+        line-height: 150px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        text-align: center;
+        font-size: 16px;
+        color: black;
+    }
+}
+
+.xctgul {
+    list-style: none;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    li {
+        display: table;
+        background-color: white;
+        line-height: 55px;
+        margin-bottom: 12px;
+        width: 480px;
+        padding-left: 15px;
+        padding-right: 15px;
+
+        p {
+            display: table-cell;
+            font-size: 18px;
+        }
+    }
+
+    li:hover {
+        cursor: pointer;
+        background-color: rgb(189, 26, 45);
+        border-radius: 5px;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        transform: translate(0, -8px);
+
+        p {
+            color: white;
+        }
+
+        transition: background-color ease-in-out 0.25s;
+    }
+}
