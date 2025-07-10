@@ -8,25 +8,28 @@
             <router-link to="/login">用户登录</router-link>
           </template>
           <template v-else>
-            <!-- 修复：用户信息在user对象中 -->
-            当前用户：{{ userStore.user?.username }} | 
-            <a v-if="userStore.autologin" href="#" @click.prevent="removeAutologin">取消自动登录</a>
-            <a v-else href="#" @click.prevent="logout">退出登录</a>
+            <!-- 修复1: 使用 userStore.user?.yhm 而不是 username -->
+            当前用户：{{ userStore.user?.yhm }} | 
+            <!-- 修复2: 添加角色显示 -->
+            <span class="user-role">({{ userStore.userRole }})</span> |
+            
+            <!-- 修复3: 添加退出登录功能 -->
+            <a href="#" @click.prevent="logout">退出登录</a>
           </template>
         </div>
-        
+
         <div class="gnul">
           <ul>
-            <!-- 修复：使用isAdmin的getter（需在userStore中定义） -->
+            <!-- 修复4: 使用 userStore.isAdmin 判断管理员权限 -->
             <template v-if="userStore.isAdmin">
-              <li><router-link to="/admin/activity">活动管理</router-link></li> |
               <li><router-link to="/admin/news">新闻管理</router-link></li> |
-              <li><router-link to="/admin/comments">评论管理</router-link></li> |
+              <li><router-link to="/ActivityManage">活动管理</router-link></li> |
               <li><router-link to="/admin/users">用户管理</router-link></li>
+              
             </template>
             <template v-else-if="userStore.isLoggedIn">
-              <li><router-link to="/user/comments">评论管理</router-link></li> |
-              <li><router-link to="/user/profile">用户管理</router-link></li>
+              <!-- 修复5: 使用正确的路由路径 -->
+              <li><router-link to="/GuestManage">用户管理</router-link></li>
             </template>
           </ul>
         </div>
@@ -53,34 +56,17 @@
           </form>
         </div>
       </div>
-      
+
       <div class="navcon">
         <div class="nav">
           <ul>
             <li><router-link to="/">首页</router-link></li>
-            <li><router-link to="/heritage">非遗概览</router-link></li> <!-- 改为router-link -->
-            <li>
-              <a href="#">非遗项目</a>
-              <div class="subnav">
-                <ul>
-                  <li><router-link to="/projects/literature">民间文学</router-link></li>
-                  <li><router-link to="/projects/art">传统美艺</router-link></li>
-                </ul>
-              </div>
-            </li>
-            <li><router-link to="/inheritors">传承人风采</router-link></li>
-            <li><router-link to="/protection">非遗保护与传承</router-link></li>
-            <li>
-              <a href="#">非遗资源与下载</a>
-              <div class="subnav">
-                <ul>
-                  <li><router-link to="/resources/books">相关书籍</router-link></li>
-                  <li><router-link to="/resources/videos">影音资料</router-link></li>
-                  <li><router-link to="/resources/reports">研究报告</router-link></li>
-                </ul>
-              </div>
-            </li>
-            <li><router-link to="/about">关于我们</router-link></li>
+            <li><router-link to="/DevelopedPage">非遗概览</router-link></li> <!-- 改为router-link -->
+            <li> <router-link to="/DevelopedPage">非遗项目</router-link></li>
+            <li><router-link to="/DevelopedPage">传承人风采</router-link></li>
+            <li><router-link to="/DevelopedPage">非遗保护与传承</router-link></li>
+            <li><router-link to="/DevelopedPage">非遗资源与下载</router-link></li>
+            <li><router-link to="/DevelopedPage">关于我们</router-link></li>
           </ul>
         </div>
       </div>
@@ -98,19 +84,25 @@ const router = useRouter()
 const searchKeyword = ref('')
 const currentTime = ref('')
 
+// 修复6: 添加退出登录方法
 const logout = () => {
   userStore.logout()
   router.push('/login')
 }
 
-const removeAutologin = () => {
-  userStore.autologin = false // 需在userStore的state中添加autologin
-}
+// 修复7: 添加移除自动登录方法
+// const removeAutologin = () => {
+//   userStore.autologin = false
+//   // 实际应用中可能需要调用API取消自动登录
+// }
 
+// 修复8: 添加搜索方法
 const searchNews = () => {
   if (searchKeyword.value.trim()) {
-    // 跳转到搜索结果页（需创建对应页面）
-    router.push({ path: '/search', query: { keyword: searchKeyword.value } })
+    router.push({ 
+      path: '/search', 
+      query: { keyword: searchKeyword.value } 
+    })
   }
 }
 
@@ -119,11 +111,21 @@ onMounted(() => {
   const updateTime = () => {
     currentTime.value = new Date().toLocaleString()
   }
-  updateTime() // 初始化
+  updateTime()
   const timer = setInterval(updateTime, 1000)
-  
+
   onUnmounted(() => {
     clearInterval(timer)
   })
 })
 </script>
+<style scoped>
+/* 添加用户角色样式 */
+.user-role {
+  font-size: 12px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* 其余样式保持不变 */
+</style>

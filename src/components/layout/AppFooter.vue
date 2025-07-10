@@ -16,8 +16,8 @@
     <div style="
    background-color: rgb(218, 187, 133);
     line-height: 52px;">
-      版权所有 © 2011-2024 四川宏源悦文化传媒有限公司 &nbsp;|&nbsp; 
-      <a href="mailto:2270129841@qq.com">联系我们</a>
+      版权所有 © 2011-2025 四川宏源悦文化传媒有限公司 &nbsp;|&nbsp;
+      <a href="mailto:2270129841@qq.com" style="text-decoration: none;color: black;">联系我们</a>
     </div>
   </div>
 </template>
